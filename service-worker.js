@@ -4,7 +4,7 @@
 //      [2] : https://developers.google.com/web/fundamentals/primers/service-workers/lifecycle
 //
 
-const VERSION = '0.0.6';
+const VERSION = '0.0.1';
 
 const CACHE_NAME = 'apstore';
 
