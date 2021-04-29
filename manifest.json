@@ -1,7 +1,7 @@
 {
-    "name": "Hello World",
-    "short_name": "HelloWorld",
-    "description": "Hello world!",
+    "name": "APStore",
+    "short_name": "APStore",
+    "description": "APStore",
     "start_url": "index.html",
     "display": "standalone",
     "icons":
