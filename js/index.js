@@ -39,7 +39,7 @@ const main = () =>
                                             timerId = setTimeout(() =>
                                             {
                                                 location.reload();
-                                            }, 1);
+                                            }, 1000);
                                         };
 
                                         if (Notification.permission === 'granted')
@@ -81,6 +81,8 @@ const main = () =>
         if (/Android | webOS | iPhone | iPad | iPod | BlackBerry | IEMobile | Opera Mini/i.test(navigator.userAgent) == true)
             useSocketIo = false;
 
+        const button = document.getElementById('PingButton');
+
         if (useSocketIo === true)
         {
             // const socket = io('http://localhost:10241');
@@ -93,15 +95,17 @@ const main = () =>
                 // Do something
             });
 
-            const button = document.getElementById('PingButton');
-
             button.onclick = () =>
             {
                 // Do something
 
                 socket.emit('ping', { time: Date.now() });
             };
+
+            button.disabled = false;
         }
+        else
+            button.disabled = true;
     });
 
     // Do something
