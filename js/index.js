@@ -85,8 +85,8 @@ const main = () =>
 
         if (useSocketIo === true)
         {
-            // const socket = io('http://localhost:10241');
-            const socket = io('https://localhost:10241');
+            const socket = io('http://localhost:10241');
+            // const socket = io('https://localhost:10241');
 
             socket.on('pong', (data) =>
             {
