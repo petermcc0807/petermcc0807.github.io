@@ -79,14 +79,14 @@ const main = () =>
         let useSocketIo = true;
 
         if (/Android | webOS | iPhone | iPad | iPod | BlackBerry | IEMobile | Opera Mini/i.test(navigator.userAgent) == true)
-            useSocketIo = true;
+            useSocketIo = false;
 
         const button = document.getElementById('PingButton');
 
         if (useSocketIo === true)
         {
-            const socket = io('http://localhost:10241');
-            // const socket = io('https://localhost:10241');
+            // const socket = io('http://localhost:10241');
+            const socket = io('https://localhost:10241');
 
             socket.on('pong', (data) =>
             {
