@@ -4,7 +4,7 @@ const main = () =>
     {
         if ('serviceWorker' in navigator)
         {
-            navigator.serviceWorker.register('/service-worker.js').then(registration =>
+            navigator.serviceWorker.register('/service-worker.js').then((registration) =>
             {
                 console.log('navigator.serviceWorker.register(): service worker registered');
 
@@ -66,7 +66,7 @@ const main = () =>
                 timerId = setInterval(() => { const promise = registration.update(); }, 15000);
 
                 // Do something
-            }).catch(error =>
+            }).catch((error) =>
             {
                 console.log('navigator.serviceWorker.register(): service worker not registered;', error);
 

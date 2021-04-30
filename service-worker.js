@@ -4,7 +4,7 @@
 //      [2] : https://developers.google.com/web/fundamentals/primers/service-workers/lifecycle
 //
 
-const VERSION = '0.0.2';
+const VERSION = '0.0.3';
 
 const CACHE_NAME = 'apstore';
 
@@ -22,15 +22,13 @@ self.addEventListener('install', event =>
 {
     console.log('self.addEventListener(install)');
 
-    self.skipWaiting();
-
     // NOTE: see [1]
     event.waitUntil(caches.delete(CACHE_NAME).then((cache) =>
     {
         console.log('self.addEventListener(install): caches.delete(); cache deleted');
 
         // Do something
-    }).catch(error =>
+    }).catch((error) =>
     {
         console.log('self.addEventListener(install): caches.delete();', error);
 
@@ -45,26 +43,28 @@ self.addEventListener('install', event =>
         console.log('self.addEventListener(install): caches.open(); assets cached');
 
         // Do something
-    }).catch(error =>
+    }).catch((error) =>
     {
         console.log('self.addEventListener(install): caches.open();', error);
 
         // Do something
     }));
+
+    self.skipWaiting();    
 });
 
-self.addEventListener('activate', event =>
+self.addEventListener('activate', (event) =>
 {
     console.log('self.addEventListener(activate)');
 
     // Do something
 });
 
-self.addEventListener('fetch', event =>
+self.addEventListener('fetch', (event) =>
 {
     console.log('self.addEventListener(fetch)');
 
-    event.respondWith(caches.match(event.request).then(response =>
+    event.respondWith(caches.match(event.request).then((response) =>
     {
         let promise;
 
@@ -74,7 +74,7 @@ self.addEventListener('fetch', event =>
             promise = fetch(event.request);
 
         return promise;
-    }).catch(error =>
+    }).catch((error) =>
     {
         console.log('self.addEventListener(fetch): caches.match();', error);
 
