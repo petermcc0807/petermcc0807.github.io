@@ -76,36 +76,24 @@ const main = () =>
             // Do something
         }
 
-        let useSocketIo = true;
+        // const socket = io('http://localhost:10241');
+        const socket = io('https://localhost:10241');
 
-        // if (/Android | webOS | iPhone | iPad | iPod | BlackBerry | IEMobile | Opera Mini/i.test(navigator.userAgent) == true)
-            // useSocketIo = false;
+        socket.on('pong', (data) =>
+        {
+            console.log(`socket.on(pong): id=${ socket.id }, data=${ JSON.stringify(data) }`);
+
+            // Do something
+        });
 
         const button = document.getElementById('PingButton');
 
-        if (useSocketIo === true)
+        button.onclick = () =>
         {
-            // const socket = io('http://localhost:10241');
-            const socket = io('https://localhost:10241');
+            // Do something
 
-            socket.on('pong', (data) =>
-            {
-                console.log(`socket.on(pong): id=${ socket.id }, data=${ JSON.stringify(data) }`);
-
-                // Do something
-            });
-
-            button.onclick = () =>
-            {
-                // Do something
-
-                socket.emit('ping', { time: Date.now() });
-            };
-
-            button.disabled = false;
-        }
-        else
-            button.disabled = true;
+            socket.emit('ping', { time: Date.now() });
+        };
     });
 
     // Do something
