@@ -30,7 +30,7 @@ const main = () =>
                                     {
                                         const notify = () =>
                                         {
-                                            const notification = new Notification('APStore: Update installed');
+                                            registration.showNotification('APStore', { body: 'Update installed' });
 
                                             location.reload();
                                         };
@@ -38,14 +38,16 @@ const main = () =>
                                         if (Notification.permission === 'granted')
                                             notify();
                                         else
-                                        {
                                             Notification.requestPermission().then((permission) =>
                                             {
                                                 if (Notification.permission === 'granted')
                                                     notify();
+                                                else
+                                                    location.reload();
                                             });
-                                        }
                                     }
+                                    else
+                                        location.reload();
                                 }
                             });
 
