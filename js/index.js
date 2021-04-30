@@ -39,7 +39,7 @@ const main = () =>
                                             timerId = setTimeout(() =>
                                             {
                                                 location.reload();
-                                            }, 1000);
+                                            }, 1);
                                         };
 
                                         if (Notification.permission === 'granted')
