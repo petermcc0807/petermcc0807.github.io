@@ -4,7 +4,7 @@
 //      [2] : https://developers.google.com/web/fundamentals/primers/service-workers/lifecycle
 //
 
-const VERSION = '0.0.2';
+const VERSION = '0.0.1';
 
 const CACHE_NAME = 'apstore';
 
@@ -22,22 +22,32 @@ self.addEventListener('install', event =>
 {
     console.log('self.addEventListener(install)');
 
-    // NOTE: see [1]
-    caches.delete(CACHE_NAME);
-    // NOTE
-
     self.skipWaiting();
 
-    event.waitUntil(caches.open(CACHE_NAME).then(cache =>
+    // NOTE: see [1]
+    event.waitUntil(caches.delete(CACHE_NAME).then((cache) =>
     {
-        cache.addAll(ASSETS);
-
-        console.log('self.addEventListener(install): assets cached');
+        console.log('self.addEventListener(install): caches.delete(); cache deleted');
 
         // Do something
     }).catch(error =>
     {
-        console.log('self.addEventListener(install): event.waitUntil().catch();', error);
+        console.log('self.addEventListener(install): caches.delete();', error);
+
+        // Do something
+    }));
+    // NOTE
+
+    event.waitUntil(caches.open(CACHE_NAME).then((cache) =>
+    {
+        cache.addAll(ASSETS);
+
+        console.log('self.addEventListener(install): caches.open(); assets cached');
+
+        // Do something
+    }).catch(error =>
+    {
+        console.log('self.addEventListener(install): caches.open();', error);
 
         // Do something
     }));
@@ -66,7 +76,7 @@ self.addEventListener('fetch', event =>
         return promise;
     }).catch(error =>
     {
-        console.log('self.addEventListener(fetch): event.respondWith().catch();', error);
+        console.log('self.addEventListener(fetch): caches.match();', error);
 
         // Do something
     }));
