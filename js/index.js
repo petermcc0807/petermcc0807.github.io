@@ -79,7 +79,7 @@ const main = () =>
         let useSocketIo = true;
 
         if (/Android | webOS | iPhone | iPad | iPod | BlackBerry | IEMobile | Opera Mini/i.test(navigator.userAgent) == true)
-            useSocketIo = false;
+            useSocketIo = true;
 
         const button = document.getElementById('PingButton');
 
