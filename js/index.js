@@ -8,6 +8,8 @@ const main = () =>
             {
                 console.log('navigator.serviceWorker.register(): service worker registered');
 
+                let timerId;
+
                 if (registration.active != null)
                 {
                     registration.addEventListener('updatefound', () =>
@@ -24,6 +26,8 @@ const main = () =>
                                 {
                                     console.log('installingServiceWorker.addEventListener(statechange): update ready to install');
 
+                                    clearInterval(timerId);
+
                                     // Do something
 
                                     if ('Notification' in window)
@@ -32,7 +36,10 @@ const main = () =>
                                         {
                                             registration.showNotification('APStore', { body: 'Update installed' });
 
-                                            location.reload();
+                                            timerId = setTimeout(() =>
+                                            {
+                                                location.reload();
+                                            }, 1);
                                         };
 
                                         if (Notification.permission === 'granted')
@@ -56,7 +63,7 @@ const main = () =>
                     });
                 }
 
-                const timerId = setInterval(() => { const promise = registration.update(); }, 15000);
+                timerId = setInterval(() => { const promise = registration.update(); }, 15000);
 
                 // Do something
             }).catch(error =>
@@ -69,24 +76,32 @@ const main = () =>
             // Do something
         }
 
-        /* // const socket = io('http://localhost:10241');
-        const socket = io('https://localhost:10241');
+        let useSocketIo = true;
 
-        socket.on('pong', (data) =>
+        if (/Android | webOS | iPhone | iPad | iPod | BlackBerry | IEMobile | Opera Mini/i.test(navigator.userAgent) == true)
+            useSocketIo = false;
+
+        if (useSocketIo === true)
         {
-            console.log(`socket.on(pong): id=${ socket.id }, data=${ JSON.stringify(data) }`);
+            // const socket = io('http://localhost:10241');
+            const socket = io('https://localhost:10241');
 
-            // Do something
-        });
+            socket.on('pong', (data) =>
+            {
+                console.log(`socket.on(pong): id=${ socket.id }, data=${ JSON.stringify(data) }`);
 
-        const button = document.getElementById('PingButton');
+                // Do something
+            });
 
-        button.onclick = () =>
-        {
-            // Do something
+            const button = document.getElementById('PingButton');
 
-            socket.emit('ping', { time: Date.now() });
-        }; */
+            button.onclick = () =>
+            {
+                // Do something
+
+                socket.emit('ping', { time: Date.now() });
+            };
+        }
     });
 
     // Do something
