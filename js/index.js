@@ -87,7 +87,7 @@ const main = () =>
         });
 
         // TEMPORARY
-        const webSocket = new WebSocket('ws://localhost:8080');
+        const webSocket = new WebSocket('ws://localhost:10242');
         webSocket.addEventListener('open', (event) =>
         {
             webSocket.send('Hello, wsserver!');
