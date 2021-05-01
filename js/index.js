@@ -96,6 +96,16 @@ const main = () =>
         };
     });
 
+    const webSocket = new WebSocket('ws://localhost:8080');
+    webSocket.addEventListener('open', (event) =>
+    {
+        webSocket.send('Hello, wsserver!');
+    });
+    webSocket.addEventListener('message', (event) =>
+    {
+        console.log('wsserver: ', event.data);
+    });
+
     // Do something
 };
 
