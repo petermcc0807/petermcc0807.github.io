@@ -86,6 +86,18 @@ const main = () =>
             // Do something
         });
 
+        // TEMPORARY
+        const webSocket = new WebSocket('ws://localhost:8080');
+        webSocket.addEventListener('open', (event) =>
+        {
+            webSocket.send('Hello, wsserver!');
+        });
+        webSocket.addEventListener('message', (event) =>
+        {
+            console.log('wsserver: ', event.data);
+        });
+        // TEMPORARY
+
         const button = document.getElementById('PingButton');
 
         button.onclick = () =>
@@ -93,17 +105,11 @@ const main = () =>
             // Do something
 
             socket.emit('ping', { time: Date.now() });
-        };
-    });
 
-    const webSocket = new WebSocket('ws://localhost:8080');
-    webSocket.addEventListener('open', (event) =>
-    {
-        webSocket.send('Hello, wsserver!');
-    });
-    webSocket.addEventListener('message', (event) =>
-    {
-        console.log('wsserver: ', event.data);
+            // TEMPORARY
+            webSocket.send('ping: time=' + Date.now());
+            // TEMPORARY
+        };
     });
 
     // Do something
