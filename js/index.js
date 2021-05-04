@@ -88,13 +88,9 @@ const main = () =>
 
         // TEMPORARY
         const webSocket = new WebSocket('ws://localhost:10242');
-        webSocket.addEventListener('open', (event) =>
-        {
-            webSocket.send('Hello, wsserver!');
-        });
         webSocket.addEventListener('message', (event) =>
         {
-            console.log('wsserver: ', event.data);
+            console.log('webSocket.addEventListener(message): data =', event.data);
         });
         // TEMPORARY
 
@@ -107,7 +103,7 @@ const main = () =>
             socket.emit('ping', { time: Date.now() });
 
             // TEMPORARY
-            webSocket.send('ping: time=' + Date.now());
+            webSocket.send('{\"time\":' + Date.now() + '}');
             // TEMPORARY
         };
     });
