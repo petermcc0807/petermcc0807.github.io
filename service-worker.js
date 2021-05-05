@@ -14,7 +14,7 @@
 
 // Constants
 
-const VERSION = '0.0.3';
+const VERSION = '0.0.1';
 
 const CACHE_NAME = 'apstore';
 
