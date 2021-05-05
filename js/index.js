@@ -1,3 +1,27 @@
+///////////////////////////////////////////////////////////////////////////////
+// Project      : APStore
+// File         : index.js
+// Version      : v0.0.1
+//
+// Description  : User interface script
+//
+// Author       : Peter McCarthy
+// Created      : 05/05/2021
+// Last Updated : 05/05/2021
+//
+// TODO     [1] : N/A
+///////////////////////////////////////////////////////////////////////////////
+
+// Constants
+
+const CHECK_UPDATE_INTERVAL = 15000;
+const RELOAD_TIMEOUT = 1000;
+
+// Functions
+
+//
+// main()
+//
 const main = () =>
 {
     window.addEventListener('load', () =>
@@ -28,8 +52,6 @@ const main = () =>
 
                                     clearInterval(timerId);
 
-                                    // Do something
-
                                     if ('Notification' in window)
                                     {
                                         const notify = () =>
@@ -39,7 +61,7 @@ const main = () =>
                                             timerId = setTimeout(() =>
                                             {
                                                 location.reload();
-                                            }, 1000);
+                                            }, RELOAD_TIMEOUT);
                                         };
 
                                         if (Notification.permission === 'granted')
@@ -57,58 +79,31 @@ const main = () =>
                                         location.reload();
                                 }
                             });
-
-                            // Do something
                         }
                     });
                 }
 
-                timerId = setInterval(() => { const promise = registration.update(); }, 15000);
-
-                // Do something
+                timerId = setInterval(() => { const promise = registration.update(); }, CHECK_UPDATE_INTERVAL);
             }).catch((error) =>
             {
                 console.log('navigator.serviceWorker.register(): service worker not registered;', error);
-
-                // Do something
             });
-
-            // Do something
         }
 
-        // const socket = io('http://localhost:10241');
         const socket = io('https://localhost:10241');
 
         socket.on('pong', (data) =>
         {
             console.log(`socket.on(pong): id=${ socket.id }, data=${ JSON.stringify(data) }`);
-
-            // Do something
         });
-
-        // TEMPORARY
-        const webSocket = new WebSocket('ws://localhost:10242');
-        webSocket.addEventListener('message', (event) =>
-        {
-            console.log('webSocket.addEventListener(message): event.data=' + event.data);
-        });
-        // TEMPORARY
 
         const button = document.getElementById('PingButton');
 
         button.onclick = () =>
         {
-            // Do something
-
             socket.emit('ping', { time: Date.now() });
-
-            // TEMPORARY
-            webSocket.send('{\"time\":' + Date.now() + '}');
-            // TEMPORARY
         };
     });
-
-    // Do something
 };
 
 main();

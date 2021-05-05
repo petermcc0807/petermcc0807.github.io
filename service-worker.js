@@ -1,8 +1,20 @@
+///////////////////////////////////////////////////////////////////////////////
+// Project      : APStore
+// File         : service-worker.js
+// Version      : v0.0.1
 //
-// NOTE [1] : https://developers.google.com/web/fundamentals/primers/service-workers/lifecycle
+// Description  : User interface service worker
 //
+// Author       : Peter McCarthy
+// Created      : 05/05/2021
+// Last Updated : 05/05/2021
+//
+// TODO     [1] : N/A
+///////////////////////////////////////////////////////////////////////////////
 
-const VERSION = '0.0.4';
+// Constants
+
+const VERSION = '0.0.5';
 
 const CACHE_NAME = 'apstore';
 
@@ -16,46 +28,37 @@ const ASSETS =
     '/js/socket.io/socket.io.js.map'
 ];
 
+// Functions (event handlers)
+
+//
+// self.addEventListener(install)
+//
 self.addEventListener('install', (event) =>
 {
     console.log('self.addEventListener(install)');
 
     self.skipWaiting();
 
-    /* event.waitUntil(caches.delete(CACHE_NAME).then((cache) =>
-    {
-        console.log('self.addEventListener(install): caches.delete(); cache deleted');
-
-        // Do something
-    }).catch((error) =>
-    {
-        console.log('self.addEventListener(install): caches.delete();', error);
-
-        // Do something
-    })); */
-
     event.waitUntil(caches.open(CACHE_NAME).then((cache) =>
     {
-        cache.addAll(ASSETS);
-
-        console.log('self.addEventListener(install): caches.open(); assets cached');
-
-        // Do something
+        return cache.addAll(ASSETS);
     }).catch((error) =>
     {
         console.log('self.addEventListener(install): caches.open();', error);
-
-        // Do something
     }));
 });
 
+//
+// self.addEventListener(activate)
+//
 self.addEventListener('activate', (event) =>
 {
     console.log('self.addEventListener(activate)');
-
-    // Do something
 });
 
+//
+// self.addEventListener(fetch)
+//
 self.addEventListener('fetch', (event) =>
 {
     console.log('self.addEventListener(fetch)');
@@ -73,7 +76,5 @@ self.addEventListener('fetch', (event) =>
     }).catch((error) =>
     {
         console.log('self.addEventListener(fetch): caches.match();', error);
-
-        // Do something
     }));
 });
