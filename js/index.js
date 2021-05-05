@@ -1,7 +1,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Project      : APStore
 // File         : index.js
-// Version      : v0.0.1
+// Version      : v0.0.3
 //
 // Description  : User interface script
 //
@@ -90,19 +90,57 @@ const main = () =>
             });
         }
 
+        let viewModel;
+
         const socket = io('https://localhost:10241');
 
         socket.on('pong', (data) =>
         {
             console.log(`socket.on(pong): id=${ socket.id }, data=${ JSON.stringify(data) }`);
+
+            const messageText = JSON.stringify(data);
+
+            viewModel.message.text = messageText;
+            viewModel.message.visible = true;
         });
 
-        const button = document.getElementById('PingButton');
-
-        button.onclick = () =>
+        const app =
         {
-            socket.emit('ping', { time: Date.now() });
-        };
+            data()
+            {
+                const state =
+                {
+                    message:
+                    {
+                        text: '',
+                        visible: false
+                    }
+                };
+
+                return state;
+            },
+
+            methods:
+            {
+                //
+                // ping()
+                //
+                ping(event)
+                {
+                    socket.emit('ping', { time: Date.now() });
+                },
+
+                //
+                // close()
+                //
+                close(event)
+                {
+                    this.message.visible = false;
+                }
+            }
+        }
+
+        viewModel = Vue.createApp(app).mount('#MessageDiv');
     });
 };
 

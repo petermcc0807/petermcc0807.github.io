@@ -1,7 +1,7 @@
 <!-- //////////////////////////////////////////////////////////////////////////
 // Project      : APStore
 // File         : index.html
-// Version      : v0.0.1
+// Version      : v0.0.3
 //
 // Description  : User interface layout
 //
@@ -20,14 +20,35 @@
 
         <title>APStore</title>
 
+        <link rel="stylesheet" href="css/bulma/bulma.css">
         <link rel="manifest" href="manifest.json" />
     </head>
 
     <body>
-        <p>Welcome to APStore v0.0.5</p>
-        <button id="PingButton" type="button">Ping</button>
+        <div id="MessageDiv" class="columns is-mobile">
+            <div class="column is-half is-offset-one-quarter">
+                <div class="block">
+                    <div class="content">
+                        <h2>Welcome to APStore v0.0.3</h2>
+                    </div>
+                </div>
+                <div class="block">
+                    <button class="button is-success" @click="ping($event)">Ping</button>
+                </div>
+                <div v-if="message.visible" class="block">
+                    <article class="message is-primary">
+                        <div class="message-header">
+                            <p>Pong</p>
+                            <button class="delete" aria-label="delete" @click="close($event)"></button>
+                        </div>
+                        <div class="message-body">{{ message.text }}</div>
+                    </article>
+                </div>
+            </div>
+        </div>
 
         <script src="js/socket.io/socket.io.js"></script>
+        <script src="js/vue/vue.global.js"></script>
         <script src="js/index.js"></script>
     </body>
 </html>
