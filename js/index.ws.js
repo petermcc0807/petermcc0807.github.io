@@ -1,7 +1,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Project      : APStore
 // File         : index.ws.js
-// Version      : v0.0.1
+// Version      : v0.0.2
 //
 // Description  : User interface script
 //
@@ -27,13 +27,22 @@ const main = () =>
 {
     window.addEventListener('load', () =>
     {
+        const uuid = uuidv4();
+
         let webSocket;
 
         const button = document.getElementById('PingButton');
 
         button.onclick = () =>
         {
-            try { webSocket.send('{\"time\":' + Date.now() + '}'); }
+            const message =
+            {
+                uuid: uuid,
+
+                time: Date.now()
+            };
+
+            try { webSocket.send(JSON.stringify(message)); }
 
             catch (exception) { }
         };
