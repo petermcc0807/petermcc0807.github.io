@@ -1,3 +1,28 @@
+///////////////////////////////////////////////////////////////////////////////
+// Project      : APStore
+// File         : index.ws.js
+// Version      : v0.0.1
+//
+// Description  : User interface script
+//
+// Author       : Peter McCarthy
+// Created      : 10/05/2021
+// Last Updated : 11/05/2021
+//
+// TODO     [1] : N/A
+///////////////////////////////////////////////////////////////////////////////
+
+// Constants
+
+const PORT = 10242;
+
+const RECONNECT_TIMEOUT = 2500;
+
+// Functions
+
+//
+// main()
+//
 const main = () =>
 {
     window.addEventListener('load', () =>
@@ -17,7 +42,9 @@ const main = () =>
 
         const connect = () =>
         {
-            webSocket = new WebSocket('ws://localhost:10242');
+            const url = `ws://localhost:${ PORT }`;
+
+            webSocket = new WebSocket(url);
 
             webSocket.addEventListener('open', (event) =>
             {
@@ -32,7 +59,7 @@ const main = () =>
 
                 button.disabled = true;
 
-                const timerId = setTimeout(() => connect(), 2500);
+                const timerId = setTimeout(() => connect(), RECONNECT_TIMEOUT);
             });
 
             webSocket.addEventListener('message', (event) =>

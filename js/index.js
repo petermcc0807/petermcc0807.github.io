@@ -7,12 +7,14 @@
 //
 // Author       : Peter McCarthy
 // Created      : 05/05/2021
-// Last Updated : 05/05/2021
+// Last Updated : 11/05/2021
 //
 // TODO     [1] : N/A
 ///////////////////////////////////////////////////////////////////////////////
 
 // Constants
+
+const PORT = 10241;
 
 const CHECK_UPDATE_INTERVAL = 15000;
 const RELOAD_TIMEOUT = 1000;
@@ -92,7 +94,9 @@ const main = () =>
 
         let viewModel;
 
-        const socket = io('https://localhost:10241');
+        const url = `https://localhost:${ PORT }`;
+
+        const socket = io(url);
 
         socket.on('pong', (data) =>
         {

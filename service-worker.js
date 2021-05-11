@@ -7,14 +7,14 @@
 //
 // Author       : Peter McCarthy
 // Created      : 05/05/2021
-// Last Updated : 05/05/2021
+// Last Updated : 11/05/2021
 //
 // TODO     [1] : N/A
 ///////////////////////////////////////////////////////////////////////////////
 
 // Constants
 
-const VERSION = '0.0.2';
+const VERSION = '0.0.3';
 
 const CACHE_NAME = 'apstore';
 
