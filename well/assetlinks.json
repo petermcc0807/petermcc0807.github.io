@@ -1,0 +1,14 @@
+[
+    {
+        "relation": [
+            "delegate_permission/common.handle_all_urls"
+        ],
+        "target": {
+            "namespace": "android_app",
+            "package_name": "com.prometheanworld.deeplinktestapp",
+            "sha256_cert_fingerprints": [
+                "71:B6:49:65:E1:1A:41:9E:CA:D6:0E:E3:DA:AD:4F:DB:B0:54:65:D1:99:98:D4:12:F9:03:78:26:AF:83:63:60"
+            ]
+        }
+    }
+]
