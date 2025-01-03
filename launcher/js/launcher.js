@@ -500,7 +500,8 @@ const main = async () =>
 
     const refocus = () =>
     {
-        const div = document.getElementById(appDivTabOrder[appDivTabOrderIndex]);
+        // TEMPORARY
+        /* const div = document.getElementById(appDivTabOrder[appDivTabOrderIndex]);
 
         const options =
         {
@@ -508,7 +509,12 @@ const main = async () =>
             focusVisible: true
         };
 
-        div.focus(options);
+        div.focus(options); */
+
+        const a = document.getElementById('DeepLinkTestAppA');
+
+        a.focus();
+        // TEMPORARY
     };
 
     const div = document.getElementById('Container');
