@@ -413,7 +413,8 @@ const main = async () =>
 
     window.addEventListener('keydown', async (event) =>
     {
-        let div;
+        // TEMPORARY
+        /* let div;
 
         const options =
         {
@@ -465,7 +466,8 @@ const main = async () =>
                 openScreenShareApp();
             else { }
         }
-        else { }
+        else { } */
+        // TEMPORARY
     });
 
     const intervalId = window.setInterval(async () =>
