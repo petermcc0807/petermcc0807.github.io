@@ -1,4 +1,6 @@
 //
+// TODO [1] : Check if 'refocus' message needed in openScreenShareApp()
+//
 // NOTE [1] : https://developer.chrome.com/docs/extensions/develop/concepts/messaging
 //
 
@@ -17,6 +19,11 @@ const CHROMEOSANDROIDBRIDGE_PING_INTERVAL = 5000;
 const APP_CHECKCLOSED_INTERVAL = 100;
 
 const CHROMEOSANDROIDBRIDGE_TIMEOUT = 2500;
+
+// NEW
+const CHROME_EXTENSTION = 'jlcbpeagjdfokpialolhadlckmoabgdm';
+// const CHROME_EXTENSTION = undefined;
+// NEW
 
 const apps =
 {
@@ -89,9 +96,18 @@ const main = async () =>
 
         if (chrome.runtime !== undefined)
         {
-            const response = await chrome.runtime.sendMessage({ sender: 'launcher', type: 'load', data: { width: WIDTH, height: HEIGHT, availHeight: AVAIL_HEIGHT, isChromeOS } });
+            // NEW
+            // const response = await chrome.runtime.sendMessage({ sender: 'launcher', type: 'load', data: { width: WIDTH, height: HEIGHT, availHeight: AVAIL_HEIGHT, isChromeOS } });
 
-            console.log(`chrome.runtime.sendMessage((response) => {}): sender=${ response.sender }, type=${ response.type }`);
+            let response;
+
+            if (CHROME_EXTENSTION !== undefined)
+                response = await chrome.runtime.sendMessage(CHROME_EXTENSTION, { sender: 'launcher', type: 'load', data: { width: WIDTH, height: HEIGHT, availHeight: AVAIL_HEIGHT, isChromeOS } });
+            else
+                response = await chrome.runtime.sendMessage({ sender: 'launcher', type: 'load', data: { width: WIDTH, height: HEIGHT, availHeight: AVAIL_HEIGHT, isChromeOS } });
+            // NEW
+
+            console.log(`chrome.runtime.sendMessage(): sender=${ response.sender }, type=${ response.type }`);
 
             // Do something
         }
@@ -126,9 +142,18 @@ const main = async () =>
 
                     if (chrome.runtime !== undefined)
                     {
-                        const response = await chrome.runtime.sendMessage({ sender: 'launcher', type: 'close', data: { } });
+                        // NEW
+                        // const response = await chrome.runtime.sendMessage({ sender: 'launcher', type: 'close', data: { } });
 
-                        console.log(`chrome.runtime.sendMessage((response) => {}): sender=${ response.sender }, type=${ response.type }`);
+                        let response;
+
+                        if (CHROME_EXTENSTION !== undefined)
+                            response = await chrome.runtime.sendMessage(CHROME_EXTENSTION, { sender: 'launcher', type: 'close', data: { } });
+                        else
+                            response = await chrome.runtime.sendMessage({ sender: 'launcher', type: 'close', data: { } });
+                        // NEW
+
+                        console.log(`chrome.runtime.sendMessage(): sender=${ response.sender }, type=${ response.type }`);
 
                         // Do something
                     }
@@ -138,9 +163,18 @@ const main = async () =>
 
         if (chrome.runtime !== undefined)
         {
-            const response = await chrome.runtime.sendMessage({ sender: 'launcher', type: 'open', data: { } });
+            // NEW
+            // const response = await chrome.runtime.sendMessage({ sender: 'launcher', type: 'open', data: { } });
 
-            console.log(`chrome.runtime.sendMessage((response) => {}): sender=${ response.sender }, type=${ response.type }`);
+            let response;
+
+            if (CHROME_EXTENSTION !== undefined)
+                response = await chrome.runtime.sendMessage(CHROME_EXTENSTION, { sender: 'launcher', type: 'open', data: { } });
+            else
+                response = await chrome.runtime.sendMessage({ sender: 'launcher', type: 'open', data: { } });
+            // NEW
+
+            console.log(`chrome.runtime.sendMessage(): sender=${ response.sender }, type=${ response.type }`);
 
             // Do something
         }
@@ -157,9 +191,18 @@ const main = async () =>
 
         if (chrome.runtime !== undefined)
         {
-            const response = await chrome.runtime.sendMessage({ sender: 'launcher', type: 'refocus', data: { } });
+            // NEW
+            // const response = await chrome.runtime.sendMessage({ sender: 'launcher', type: 'refocus', data: { } });
 
-            console.log(`chrome.runtime.sendMessage((response) => {}): sender=${ response.sender }, type=${ response.type }`);
+            let response;
+
+            if (CHROME_EXTENSTION !== undefined)
+                response = await chrome.runtime.sendMessage(CHROME_EXTENSTION, { sender: 'launcher', type: 'refocus', data: { } });
+            else
+                response = await chrome.runtime.sendMessage({ sender: 'launcher', type: 'refocus', data: { } });
+            // NEW
+
+            console.log(`chrome.runtime.sendMessage(): sender=${ response.sender }, type=${ response.type }`);
 
             // Do something
         }
@@ -199,9 +242,18 @@ const main = async () =>
 
             if (chrome.runtime !== undefined)
             {
-                const response = await chrome.runtime.sendMessage({ sender: 'launcher', type: 'open', data: { } });
+                // NEW
+                // const response = await chrome.runtime.sendMessage({ sender: 'launcher', type: 'open', data: { } });
 
-                console.log(`chrome.runtime.sendMessage((response) => {}): sender=${ response.sender }, type=${ response.type }`);
+                let response;
+
+                if (CHROME_EXTENSTION !== undefined)
+                    response = await chrome.runtime.sendMessage(CHROME_EXTENSTION, { sender: 'launcher', type: 'open', data: { } });
+                else
+                    response = await chrome.runtime.sendMessage({ sender: 'launcher', type: 'open', data: { } });
+                // NEW
+
+                console.log(`chrome.runtime.sendMessage(): sender=${ response.sender }, type=${ response.type }`);
 
                 // Do something
             }
@@ -224,9 +276,18 @@ const main = async () =>
 
                         if (chrome.runtime !== undefined)
                         {
-                            const response = await chrome.runtime.sendMessage({ sender: 'launcher', type: 'close', data: { } });
+                            // NEW
+                            // const response = await chrome.runtime.sendMessage({ sender: 'launcher', type: 'close', data: { } });
 
-                            console.log(`chrome.runtime.sendMessage((response) => {}): sender=${ response.sender }, type=${ response.type }`);
+                            let response;
+
+                            if (CHROME_EXTENSTION !== undefined)
+                                response = await chrome.runtime.sendMessage(CHROME_EXTENSTION, { sender: 'launcher', type: 'close', data: { } });
+                            else
+                                response = await chrome.runtime.sendMessage({ sender: 'launcher', type: 'close', data: { } });
+                            // NEW
+
+                            console.log(`chrome.runtime.sendMessage(): sender=${ response.sender }, type=${ response.type }`);
 
                             // Do something
                         }
@@ -236,9 +297,18 @@ const main = async () =>
 
             if (chrome.runtime !== undefined)
             {
-                const response = await chrome.runtime.sendMessage({ sender: 'launcher', type: 'open', data: { } });
+                // NEW
+                // const response = await chrome.runtime.sendMessage({ sender: 'launcher', type: 'open', data: { } });
 
-                console.log(`chrome.runtime.sendMessage((response) => {}): sender=${ response.sender }, type=${ response.type }`);
+                let response;
+
+                if (CHROME_EXTENSTION !== undefined)
+                    response = await chrome.runtime.sendMessage(CHROME_EXTENSTION, { sender: 'launcher', type: 'open', data: { } });
+                else
+                    response = await chrome.runtime.sendMessage({ sender: 'launcher', type: 'open', data: { } });
+                // NEW
+
+                console.log(`chrome.runtime.sendMessage(): sender=${ response.sender }, type=${ response.type }`);
 
                 // Do something
             }
@@ -263,9 +333,18 @@ const main = async () =>
 
                     if (chrome.runtime !== undefined)
                     {
-                        const response = await chrome.runtime.sendMessage({ sender: 'launcher', type: 'close', data: { } });
+                        // NEW
+                        // const response = await chrome.runtime.sendMessage({ sender: 'launcher', type: 'close', data: { } });
 
-                        console.log(`chrome.runtime.sendMessage((response) => {}): sender=${ response.sender }, type=${ response.type }`);
+                        let response;
+
+                        if (CHROME_EXTENSTION !== undefined)
+                            response = await chrome.runtime.sendMessage(CHROME_EXTENSTION, { sender: 'launcher', type: 'close', data: { } });
+                        else
+                            response = await chrome.runtime.sendMessage({ sender: 'launcher', type: 'close', data: { } });
+                        // NEW
+
+                        console.log(`chrome.runtime.sendMessage(): sender=${ response.sender }, type=${ response.type }`);
 
                         // Do something
                     }
@@ -275,9 +354,18 @@ const main = async () =>
 
         if (chrome.runtime !== undefined)
         {
-            const response = await chrome.runtime.sendMessage({ sender: 'launcher', type: 'open', data: { } });
+            // NEW
+            // const response = await chrome.runtime.sendMessage({ sender: 'launcher', type: 'open', data: { } });
 
-            console.log(`chrome.runtime.sendMessage((response) => {}): sender=${ response.sender }, type=${ response.type }`);
+            let response;
+
+            if (CHROME_EXTENSTION !== undefined)
+                response = await chrome.runtime.sendMessage(CHROME_EXTENSTION, { sender: 'launcher', type: 'open', data: { } });
+            else
+                response = await chrome.runtime.sendMessage({ sender: 'launcher', type: 'open', data: { } });
+            // NEW
+
+            console.log(`chrome.runtime.sendMessage(): sender=${ response.sender }, type=${ response.type }`);
 
             // Do something
         }
@@ -301,9 +389,18 @@ const main = async () =>
 
                     if (chrome.runtime !== undefined)
                     {
-                        const response = await chrome.runtime.sendMessage({ sender: 'launcher', type: 'close', data: { } });
+                        // NEW
+                        // const response = await chrome.runtime.sendMessage({ sender: 'launcher', type: 'close', data: { } });
 
-                        console.log(`chrome.runtime.sendMessage((response) => {}): sender=${ response.sender }, type=${ response.type }`);
+                        let response;
+
+                        if (CHROME_EXTENSTION !== undefined)
+                            response = await chrome.runtime.sendMessage(CHROME_EXTENSTION, { sender: 'launcher', type: 'close', data: { } });
+                        else
+                            response = await chrome.runtime.sendMessage({ sender: 'launcher', type: 'close', data: { } });
+                        // NEW
+
+                        console.log(`chrome.runtime.sendMessage(): sender=${ response.sender }, type=${ response.type }`);
 
                         // Do something
                     }
@@ -313,9 +410,18 @@ const main = async () =>
 
         if (chrome.runtime !== undefined)
         {
-            const response = await chrome.runtime.sendMessage({ sender: 'launcher', type: 'open', data: { } });
+            // NEW
+            // const response = await chrome.runtime.sendMessage({ sender: 'launcher', type: 'open', data: { } });
 
-            console.log(`chrome.runtime.sendMessage((response) => {}): sender=${ response.sender }, type=${ response.type }`);
+            let response;
+
+            if (CHROME_EXTENSTION !== undefined)
+                response = await chrome.runtime.sendMessage(CHROME_EXTENSTION, { sender: 'launcher', type: 'open', data: { } });
+            else
+                response = await chrome.runtime.sendMessage({ sender: 'launcher', type: 'open', data: { } });
+            // NEW
+
+            console.log(`chrome.runtime.sendMessage(): sender=${ response.sender }, type=${ response.type }`);
 
             // Do something
         }
@@ -329,6 +435,26 @@ const main = async () =>
 
         div.style.opacity = 0.5;
         div.style.pointerEvents = 'none';
+
+        // TODO: see [1]
+        if (chrome.runtime !== undefined)
+        {
+            // NEW
+            // const response = await chrome.runtime.sendMessage({ sender: 'launcher', type: 'refocus', data: { } });
+
+            let response;
+
+            if (CHROME_EXTENSTION !== undefined)
+                response = await chrome.runtime.sendMessage(CHROME_EXTENSTION, { sender: 'launcher', type: 'refocus', data: { } });
+            else
+                response = await chrome.runtime.sendMessage({ sender: 'launcher', type: 'refocus', data: { } });
+            // NEW
+
+            console.log(`chrome.runtime.sendMessage(): sender=${ response.sender }, type=${ response.type }`);
+
+            // Do something
+        }
+        // TODO
 
         const url = apps.screenShare.urlAndroid;
 
@@ -365,9 +491,18 @@ const main = async () =>
 
             if (chrome.runtime !== undefined)
             {
-                const response = await chrome.runtime.sendMessage({ sender: 'launcher', type: 'open', data: { } });
+                // NEW
+                // const response = await chrome.runtime.sendMessage({ sender: 'launcher', type: 'open', data: { } });
 
-                console.log(`chrome.runtime.sendMessage((response) => {}): sender=${ response.sender }, type=${ response.type }`);
+                let response;
+
+                if (CHROME_EXTENSTION !== undefined)
+                    response = await chrome.runtime.sendMessage(CHROME_EXTENSTION, { sender: 'launcher', type: 'open', data: { } });
+                else
+                    response = await chrome.runtime.sendMessage({ sender: 'launcher', type: 'open', data: { } });
+                // NEW
+
+                console.log(`chrome.runtime.sendMessage(): sender=${ response.sender }, type=${ response.type }`);
 
                 // Do something
             }
@@ -390,9 +525,18 @@ const main = async () =>
 
                         if (chrome.runtime !== undefined)
                         {
-                            const response = await chrome.runtime.sendMessage({ sender: 'launcher', type: 'close', data: { } });
+                            // NEW
+                            // const response = await chrome.runtime.sendMessage({ sender: 'launcher', type: 'close', data: { } });
 
-                            console.log(`chrome.runtime.sendMessage((response) => {}): sender=${ response.sender }, type=${ response.type }`);
+                            let response;
+
+                            if (CHROME_EXTENSTION !== undefined)
+                                response = await chrome.runtime.sendMessage(CHROME_EXTENSTION, { sender: 'launcher', type: 'close', data: { } });
+                            else
+                                response = await chrome.runtime.sendMessage({ sender: 'launcher', type: 'close', data: { } });
+                            // NEW
+
+                            console.log(`chrome.runtime.sendMessage(): sender=${ response.sender }, type=${ response.type }`);
 
                             // Do something
                         }
@@ -402,9 +546,18 @@ const main = async () =>
 
             if (chrome.runtime !== undefined)
             {
-                const response = await chrome.runtime.sendMessage({ sender: 'launcher', type: 'open', data: { } });
+                // NEW
+                // const response = await chrome.runtime.sendMessage({ sender: 'launcher', type: 'open', data: { } });
 
-                console.log(`chrome.runtime.sendMessage((response) => {}): sender=${ response.sender }, type=${ response.type }`);
+                let response;
+
+                if (CHROME_EXTENSTION !== undefined)
+                    response = await chrome.runtime.sendMessage(CHROME_EXTENSTION, { sender: 'launcher', type: 'open', data: { } });
+                else
+                    response = await chrome.runtime.sendMessage({ sender: 'launcher', type: 'open', data: { } });
+                // NEW
+
+                console.log(`chrome.runtime.sendMessage(): sender=${ response.sender }, type=${ response.type }`);
 
                 // Do something
             }
@@ -413,8 +566,7 @@ const main = async () =>
 
     window.addEventListener('keydown', async (event) =>
     {
-        // TEMPORARY
-        /* let div;
+        let div;
 
         const options =
         {
@@ -466,8 +618,7 @@ const main = async () =>
                 openScreenShareApp();
             else { }
         }
-        else { } */
-        // TEMPORARY
+        else { }
     });
 
     const intervalId = window.setInterval(async () =>
@@ -502,8 +653,7 @@ const main = async () =>
 
     const refocus = () =>
     {
-        // TEMPORARY
-        /* const div = document.getElementById(appDivTabOrder[appDivTabOrderIndex]);
+        const div = document.getElementById(appDivTabOrder[appDivTabOrderIndex]);
 
         const options =
         {
@@ -511,12 +661,7 @@ const main = async () =>
             focusVisible: true
         };
 
-        div.focus(options); */
-
-        const a = document.getElementById('DeepLinkTestAppA');
-
-        a.focus();
-        // TEMPORARY
+        div.focus(options);
     };
 
     const div = document.getElementById('Container');
