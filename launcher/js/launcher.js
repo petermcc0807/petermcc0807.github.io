@@ -21,7 +21,8 @@ const APP_CHECKCLOSED_INTERVAL = 100;
 const CHROMEOSANDROIDBRIDGE_TIMEOUT = 2500;
 
 // NEW
-const CHROME_EXTENSTION = 'jlcbpeagjdfokpialolhadlckmoabgdm';
+// const CHROME_EXTENSTION = 'jlcbpeagjdfokpialolhadlckmoabgdm'; // NUC
+const CHROME_EXTENSTION = 'conmonkkabbmjdkfbmfiinlfnjbcbolc'; // Chromebook
 // const CHROME_EXTENSTION = undefined;
 // NEW
 
