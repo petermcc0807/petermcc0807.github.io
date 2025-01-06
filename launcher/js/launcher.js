@@ -621,35 +621,38 @@ const main = async () =>
         else { }
     });
 
-    const intervalId = window.setInterval(async () =>
+    if (CHROME_EXTENSTION === undefined)
     {
-        const timestamp = Date.now();
-
-        const url = `http://100.115.92.2:8080/api/ping?timestamp=${ timestamp }`;
-
-        console.log(`window.setInterval(() => {}): url=${ url }`);
-
-        const options = { timeout: CHROMEOSANDROIDBRIDGE_TIMEOUT };
-
-        try
+        const intervalId = window.setInterval(async () =>
         {
-            const response = await axios.get(url, options);
+            const timestamp = Date.now();
 
-            if (response.status === 200)
+            const url = `http://100.115.92.2:8080/api/ping?timestamp=${ timestamp }`;
+
+            console.log(`window.setInterval(() => {}): url=${ url }`);
+
+            const options = { timeout: CHROMEOSANDROIDBRIDGE_TIMEOUT };
+
+            try
             {
-                let data = response.data;
+                const response = await axios.get(url, options);
 
-                if (typeof data === 'string')
-                    data = JSON.parse(data);
+                if (response.status === 200)
+                {
+                    let data = response.data;
 
-                console.log(`window.setInterval(() => {}): response.data=${ JSON.stringify(data) }`);
+                    if (typeof data === 'string')
+                        data = JSON.parse(data);
 
-                // Do something
+                    console.log(`window.setInterval(() => {}): response.data=${ JSON.stringify(data) }`);
+
+                    // Do something
+                }
             }
-        }
 
-        catch (exception) { }
-    }, CHROMEOSANDROIDBRIDGE_PING_INTERVAL);
+            catch (exception) { }
+        }, CHROMEOSANDROIDBRIDGE_PING_INTERVAL);
+    }
 
     const refocus = () =>
     {
