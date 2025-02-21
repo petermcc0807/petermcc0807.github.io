@@ -8,7 +8,7 @@ const main = () =>
     {
         if (chrome.runtime !== undefined)
         {
-            const response = await runtime.sendMessage(CHROME_EXTENSION, { sender: 'launcher', type: 'close', data: { } });
+            const response = await chrome.runtime.sendMessage(CHROME_EXTENSION, { sender: 'launcher', type: 'close', data: { } });
 
             console.log(`chrome.runtime.sendMessage(): sender=${ response.sender }, type=${ response.type }`);
 
