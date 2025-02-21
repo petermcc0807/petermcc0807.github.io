@@ -6,11 +6,14 @@ const main = () =>
 {
     const intervalId = setInterval(async () =>
     {
-        const response = await runtime.sendMessage(CHROME_EXTENSION, { sender: 'launcher', type: 'close', data: { } });
+        if (chrome.runtime !== undefined)
+        {
+            const response = await runtime.sendMessage(CHROME_EXTENSION, { sender: 'launcher', type: 'close', data: { } });
 
-        console.log(`chrome.runtime.sendMessage(): sender=${ response.sender }, type=${ response.type }`);
+            console.log(`chrome.runtime.sendMessage(): sender=${ response.sender }, type=${ response.type }`);
 
-        // Do something
+            // Do something
+        }
     }, 1000);
 }
 
