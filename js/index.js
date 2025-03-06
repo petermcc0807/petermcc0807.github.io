@@ -11,8 +11,6 @@ const main = () =>
 
     button.addEventListener('click', async () =>
     {
-        let device;
-
         console.log('main(): Requesting BLE device...');
 
         try
@@ -45,11 +43,6 @@ const main = () =>
         catch (exception)
         {
             console.log(exception);
-        }
-
-        if (device !== undefined)
-        {
-            // Do something
         }
     });
 }
