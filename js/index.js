@@ -1,26 +1,36 @@
 'use strict';
 
-const main = async () =>
+const filters = [ { services: [ '0000180D-0000-1000-8000-00805F9B34FB' ] }];
+
+const main = () =>
 {
-    const filters = [ { services: [ '0000180D-0000-1000-8000-00805F9B34FB' ] }];
+    const button = document.getElementById('BLEButton');
 
-    let devices;
-
-    console.log('main(): Getting BLE devices...');
-
-    try
+    button.addEventListener('click', async () =>
     {
-        devices = await navigator.bluetooth.requestDevice({ filters });
+        let device;
 
-        console.log('main(): got BLE devices');
+        console.log('main(): Getting BLE devices...');
 
-        // Do something
-    }
+        try
+        {
+            const devices = await navigator.bluetooth.requestDevice({ filters });
 
-    catch (exception)
-    {
-        console.log(exception);
-    }
+            console.log('main(): got BLE devices');
+
+            // Do something
+        }
+
+        catch (exception)
+        {
+            console.log(exception);
+        }
+
+        if (device !== undefined)
+        {
+            // Do something
+        }
+    });
 }
 
 main();
