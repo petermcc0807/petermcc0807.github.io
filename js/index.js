@@ -10,7 +10,6 @@ const main = async () =>
 
     try
     {
-
         devices = await navigator.bluetooth.requestDevice({ filters });
 
         console.log('main(): got BLE devices');
@@ -18,7 +17,10 @@ const main = async () =>
         // Do something
     }
 
-    catch (exception) { }
+    catch (exception)
+    {
+        console.log(exception);
+    }
 }
 
 main();
