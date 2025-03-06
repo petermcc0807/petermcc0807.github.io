@@ -13,23 +13,33 @@ const main = () =>
     {
         let device;
 
-        console.log('main(): Getting BLE device...');
+        console.log('main(): Requesting BLE device...');
 
         try
         {
             const device = await navigator.bluetooth.requestDevice({ filters });
 
-            console.log('main(): got BLE device');
+            console.log('main(): requested device');
+
+            console.log('main(): Connecting to server...');
 
             const server = await device.gatt.connect();
 
+            console.log('main(): connected to server');
+
+            console.log('main(): Getting service...');
+
             const service = await server.getPrimaryService(UUID_SERVICE);
 
-            const characteristic = service.getCharacteristic(UUID_CHARACTERISTIC);
+            console.log('main(): got service');
+
+            console.log('main(): Getting characteristic...');
+
+            const characteristic = await service.getCharacteristic(UUID_CHARACTERISTIC);
+
+            console.log('main(): got characteristic');
 
             // Do something
-
-            console.log('foo');
         }
 
         catch (exception)
