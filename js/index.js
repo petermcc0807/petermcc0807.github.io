@@ -1,6 +1,6 @@
 'use strict';
 
-const filters = [ { services: [ '0000180D-0000-1000-8000-00805F9B34FB' ] }];
+const filters = [ { services: [ '0000180D-0000-1000-8000-00805F9B34FB'.toLowerCase() ] }];
 
 const main = () =>
 {
