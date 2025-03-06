@@ -15,7 +15,7 @@ const main = () =>
 
         try
         {
-            const device = await navigator.bluetooth.requestDevice({ filters });
+            const device = await navigator.bluetooth.requestDevice({ acceptAllDevices: true, filters });
 
             console.log('main(): requested device');
 
